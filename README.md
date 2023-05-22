@@ -24,5 +24,31 @@ Voy a desarrollar el controlador y el servicio.Este enfoque me permitirá tener 
 y probar rápidamente el microservicio.
 2.**segundo paso**: 
 Implementar la arquitectura con el servicio y la configuración para el tracer.
-2.**tercero paso**: 
+3.**tercero paso**: 
 Hacer la classe de pueba.
+
+## Compilación y Empaquetado
+
+Para compilar y empaquetar la aplicación, sigue estos pasos:
+
+1. **Abre una terminal en el directorio raíz del proyecto.**
+2. **Ejecuta el siguiente comando**:
+bash
+mvn clean install
+
+Ejecución
+Para ejecutar la aplicación, sigue estos pasos:
+
+3.**Asegúrate de que la compilación se ha realizado con éxito y que el archivo JAR está en el directorio target.
+Ejecuta el siguiente comando**:
+bash
+Copy code
+java -jar target/nombre-del-archivo.jar
+O también puedes lanzar la ejecución desde el método main de tu aplicación.
+
+4.**Pruebas con el API
+Puedes probar el API con los siguientes comandos curl o directamente desde tu navegador (ya que los endpoints utilizan el método GET)**:
+curl:
+curl "http://localhost:8080/calculadora/sumar?num1=5&num2=3"
+curl "http://localhost:8080/calculadora/restar?num1=5&num2=3"
+
