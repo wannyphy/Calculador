@@ -52,3 +52,16 @@ curl:
 curl "http://localhost:8080/calculadora/sumar?num1=5&num2=3"
 curl "http://localhost:8080/calculadora/restar?num1=5&num2=3"
 
+Componentes de la aplicación:
+
+La aplicación se compone de los siguientes elementos:
+
+Compartimentación: Cada componente de la aplicación ha sido dividido y compartimentado para asegurar una buena organización del código.
+
+Gestión de excepciones: Se han adoptado dos enfoques para la gestión de excepciones. El primero consiste en utilizar un servicio dedicado para manejar múltiples excepciones con precisión. El segundo enfoque utiliza directamente una clase personalizada, lo cual es más adecuado para una arquitectura de menor escala que requiere mensajes precisos.
+
+Servicios: Los servicios han sido diseñados con varios métodos específicos en lugar de un método general. Este enfoque facilita el mantenimiento y escalabilidad del código, ya que solo se necesita agregar nuevas funcionalidades como operaciones individuales, como la división.
+
+Pruebas: Se han implementado pruebas que cubren el 84% del código. Esto garantiza una buena cobertura de las funcionalidades y contribuye a la calidad general del software.
+
+Configuración del rastreador: Se ha configurado el rastreador para llamar al método en el archivo JAR utilizando Spring Boot. Esto permite mantener un registro de cada operación realizada en la aplicación.
