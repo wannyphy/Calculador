@@ -36,7 +36,7 @@ class CalculadorServicesTests {
         BigDecimal expectedResult = BigDecimal.valueOf(15.9);
 
         doNothing().when(tracerAPI).trace(anyInt());
-        BigDecimal result = calculatorServices.add(number1, number2);
+        BigDecimal result = calculatorServices.addNumber(number1, number2);
         assertEquals(expectedResult, result);
         verify(tracerAPI).trace(result);
     }
@@ -47,7 +47,7 @@ class CalculadorServicesTests {
         BigDecimal expectedResult = BigDecimal.valueOf(4.1);
 
         doNothing().when(tracerAPI).trace(anyInt());
-        BigDecimal result = calculatorServices.substract(number1, number2);
+        BigDecimal result = calculatorServices.substractNumber(number1, number2);
         assertEquals(expectedResult, result);
         verify(tracerAPI).trace(result);
     }

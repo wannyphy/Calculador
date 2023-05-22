@@ -17,7 +17,7 @@ public class CalculatorController {
     @GetMapping("/add")
     private ResponseEntity<BigDecimal> addController(@RequestParam BigDecimal number1, @RequestParam BigDecimal number2) {
         try {
-            BigDecimal result = calculatorServices.add(number1, number2);
+            BigDecimal result = calculatorServices.addNumber(number1, number2);
             return ResponseEntity.ok(result);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
@@ -27,7 +27,7 @@ public class CalculatorController {
     @GetMapping("/subtract")
     private ResponseEntity<BigDecimal> subtractController(@RequestParam BigDecimal number1, @RequestParam BigDecimal number2) {
         try {
-            BigDecimal result = calculatorServices.substract(number1, number2);
+            BigDecimal result = calculatorServices.substractNumber(number1, number2);
             return ResponseEntity.ok(result);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
