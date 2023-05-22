@@ -1,6 +1,7 @@
 package com.example.calculador;
 
 import com.example.calculador.config.AppConfig;
+import com.example.calculador.custom.CustomException;
 import com.example.calculador.service.CalculatorServices;
 import io.corp.calculator.TracerImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -45,22 +47,6 @@ class CalculatorServicesTests {
     }
 
     @Test
-    void testAddNumberWithException() throws Exception {
-        // Arrange
-        BigDecimal number1 = BigDecimal.valueOf(10);
-        BigDecimal number2 = null;
-        doNothing().when(tracerAPI).trace(any(BigDecimal.class));
-
-        // Act and Assert
-        try {
-            calculatorServices.addNumber(number1, number2);
-        } catch (Exception e) {
-            assertEquals("Error: ", e.getMessage());
-        }
-        verifyNoInteractions(tracerAPI);
-    }
-
-    @Test
     void testSubtractNumber() throws Exception {
         // Arrange
         BigDecimal number1 = BigDecimal.valueOf(10);
@@ -77,18 +63,26 @@ class CalculatorServicesTests {
     }
 
     @Test
-    void testSubtractNumberWithException() throws Exception {
-        // Arrange
+    void testSubtractNumberWithCustomException() throws Exception {
+
         BigDecimal number1 = null;
         BigDecimal number2 = BigDecimal.valueOf(5.9);
-        doNothing().when(tracerAPI).trace(any(BigDecimal.class));
 
-        // Act and Assert
-        try {
-            calculatorServices.substractNumber(number1, number2);
-        } catch (Exception e) {
-            assertEquals("Error:", e.getMessage());
-        }
+
+        CustomException exception = assertThrows(CustomException.class, () -> calculatorServices.substractNumber(number1, number2));
+        assertEquals("Error al realizar la resta de los números", exception.getMessage());
         verifyNoInteractions(tracerAPI);
     }
+
+    @Test
+    void testAddNumberWithCustomException() throws Exception {
+
+        BigDecimal number1 = null;
+        BigDecimal number2 = BigDecimal.valueOf(5.9);
+
+        CustomException exception = assertThrows(CustomException.class, () -> calculatorServices.addNumber(number1, number2));
+        assertEquals("Error al realizar la suma de los números", exception.getMessage());
+        verifyNoInteractions(tracerAPI);
+    }
+
 }

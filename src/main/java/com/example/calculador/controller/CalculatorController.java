@@ -1,7 +1,9 @@
 package com.example.calculador.controller;
 
+import com.example.calculador.custom.CustomException;
 import com.example.calculador.service.CalculatorServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,22 +17,24 @@ public class CalculatorController {
     private CalculatorServices calculatorServices;
 
     @GetMapping("/add")
-    private ResponseEntity<BigDecimal> addController(@RequestParam BigDecimal number1, @RequestParam BigDecimal number2) {
+    private ResponseEntity<String> addController(@RequestParam BigDecimal number1, @RequestParam BigDecimal number2) throws Exception {
         try {
             BigDecimal result = calculatorServices.addNumber(number1, number2);
-            return ResponseEntity.ok(result);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(null);
+            return ResponseEntity.ok(String.valueOf(result));
+        } catch (CustomException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
     }
 
     @GetMapping("/subtract")
-    private ResponseEntity<BigDecimal> subtractController(@RequestParam BigDecimal number1, @RequestParam BigDecimal number2) {
+    private ResponseEntity<String> subtractController(@RequestParam BigDecimal number1, @RequestParam BigDecimal number2) throws Exception {
         try {
             BigDecimal result = calculatorServices.substractNumber(number1, number2);
-            return ResponseEntity.ok(result);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(null);
+            return ResponseEntity.ok(String.valueOf(result));
+        } catch (CustomException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
     }
 }
