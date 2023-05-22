@@ -33,7 +33,6 @@ public class CalculatorServices {
             throw new Exception("Error:", e);
         }
     }
-
     public BigDecimal substractNumber(BigDecimal number1, BigDecimal number2) throws Exception {
         return substractService(number1, number2);
     }

@@ -12,11 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-class CalculadorServicesTests {
+class CalculatorServicesTests {
     @Mock
     private TracerImpl tracerAPI;
     @Mock
@@ -30,26 +29,66 @@ class CalculadorServicesTests {
     }
 
     @Test
-    void testAdd() {
+    void testAddNumber() throws Exception {
+        // Arrange
         BigDecimal number1 = BigDecimal.valueOf(10);
         BigDecimal number2 = BigDecimal.valueOf(5.9);
         BigDecimal expectedResult = BigDecimal.valueOf(15.9);
+        doNothing().when(tracerAPI).trace(expectedResult);
 
-        doNothing().when(tracerAPI).trace(anyInt());
+        // Act
         BigDecimal result = calculatorServices.addNumber(number1, number2);
+
+        // Assert
         assertEquals(expectedResult, result);
-        verify(tracerAPI).trace(result);
+        verify(tracerAPI).trace(expectedResult);
     }
+
     @Test
-    void testSubstract() {
+    void testAddNumberWithException() throws Exception {
+        // Arrange
+        BigDecimal number1 = BigDecimal.valueOf(10);
+        BigDecimal number2 = null;
+        doNothing().when(tracerAPI).trace(any(BigDecimal.class));
+
+        // Act and Assert
+        try {
+            calculatorServices.addNumber(number1, number2);
+        } catch (Exception e) {
+            assertEquals("Error: ", e.getMessage());
+        }
+        verifyNoInteractions(tracerAPI);
+    }
+
+    @Test
+    void testSubtractNumber() throws Exception {
+        // Arrange
         BigDecimal number1 = BigDecimal.valueOf(10);
         BigDecimal number2 = BigDecimal.valueOf(5.9);
         BigDecimal expectedResult = BigDecimal.valueOf(4.1);
+        doNothing().when(tracerAPI).trace(expectedResult);
 
-        doNothing().when(tracerAPI).trace(anyInt());
+        // Act
         BigDecimal result = calculatorServices.substractNumber(number1, number2);
+
+        // Assert
         assertEquals(expectedResult, result);
-        verify(tracerAPI).trace(result);
+        verify(tracerAPI).trace(expectedResult);
+    }
+
+    @Test
+    void testSubtractNumberWithException() throws Exception {
+        // Arrange
+        BigDecimal number1 = null;
+        BigDecimal number2 = BigDecimal.valueOf(5.9);
+        doNothing().when(tracerAPI).trace(any(BigDecimal.class));
+
+        // Act and Assert
+        try {
+            calculatorServices.substractNumber(number1, number2);
+        } catch (Exception e) {
+            assertEquals("Error:", e.getMessage());
+        }
+        verifyNoInteractions(tracerAPI);
     }
 }
-
