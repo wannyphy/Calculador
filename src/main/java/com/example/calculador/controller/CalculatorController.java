@@ -5,20 +5,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+
 @RestController
 @RequestMapping("/api/calculator")
 public class CalculatorController {
+
     @Autowired
-CalculatorServices calculatorServices;
+    private CalculatorServices calculatorServices;
+
     @GetMapping("/add")
-    private ResponseEntity<Integer> addController(@RequestParam int number1, @RequestParam int number2) {
-        int result = calculatorServices.add(number1, number2);
-        return ResponseEntity.ok(result);
+    private ResponseEntity<BigDecimal> addController(@RequestParam BigDecimal number1, @RequestParam BigDecimal number2) {
+        try {
+            BigDecimal result = calculatorServices.add(number1, number2);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @GetMapping("/subtract")
-    private ResponseEntity<Integer> subtractControlle(@RequestParam int number1, @RequestParam int number2) {
-        int result = calculatorServices.substract(number1, number2);
-        return ResponseEntity.ok(result);
+    private ResponseEntity<BigDecimal> subtractController(@RequestParam BigDecimal number1, @RequestParam BigDecimal number2) {
+        try {
+            BigDecimal result = calculatorServices.substract(number1, number2);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 }
