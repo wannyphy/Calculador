@@ -1,4 +1,4 @@
-package com.example.calculador.handlerException;
+package com.example.calculador.handlerexception;
 
 import com.example.calculador.custom.CustomException;
 import org.springframework.http.HttpStatus;

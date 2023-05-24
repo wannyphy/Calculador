@@ -1,7 +1,7 @@
 package com.example.calculador;
 
 import com.example.calculador.custom.CustomException;
-import com.example.calculador.handlerException.ExceptionHandlingAdvice;
+import com.example.calculador.handlerexception.ExceptionHandlingAdvice;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
