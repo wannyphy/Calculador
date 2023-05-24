@@ -1,7 +1,10 @@
 package com.example.calculador;
 
 import com.example.calculador.config.AppConfig;
+import com.example.calculador.service.AdditionOperation;
 import com.example.calculador.service.CalculatorServices;
+import com.example.calculador.service.MathOperation;
+import com.example.calculador.service.SubtractionOperation;
 import io.corp.calculator.TracerImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,10 +38,11 @@ class CalculatorServicesTests {
         BigDecimal number1 = BigDecimal.valueOf(10);
         BigDecimal number2 = BigDecimal.valueOf(5.9);
         BigDecimal expectedResult = BigDecimal.valueOf(15.9);
+        MathOperation operation= new AdditionOperation();
         doNothing().when(tracerAPI).trace(expectedResult);
 
         // Act
-        BigDecimal result = calculatorServices.addNumber(number1, number2);
+        BigDecimal result = calculatorServices.performOperation(number1, number2,operation);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -51,10 +55,11 @@ class CalculatorServicesTests {
         BigDecimal number1 = BigDecimal.valueOf(10);
         BigDecimal number2 = BigDecimal.valueOf(5.9);
         BigDecimal expectedResult = BigDecimal.valueOf(4.1);
+        MathOperation operation= new SubtractionOperation();
         doNothing().when(tracerAPI).trace(expectedResult);
 
         // Act
-        BigDecimal result = calculatorServices.substractNumber(number1, number2);
+        BigDecimal result = calculatorServices.performOperation(number1, number2,operation);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -66,10 +71,11 @@ class CalculatorServicesTests {
 
         BigDecimal number1 = null;
         BigDecimal number2 = BigDecimal.valueOf(5.9);
+        MathOperation operation= new AdditionOperation();
 
 
-        Exception exception = assertThrows(Exception.class, () -> calculatorServices.substractNumber(number1, number2));
-        assertEquals("Error al realizar la resta de los números", exception.getMessage());
+        Exception exception = assertThrows(Exception.class, () -> calculatorServices.performOperation(number1, number2,operation));
+        assertEquals("Error al realizar la operación matemática", exception.getMessage());
         verifyNoInteractions(tracerAPI);
     }
 
@@ -78,9 +84,10 @@ class CalculatorServicesTests {
 
         BigDecimal number1 = null;
         BigDecimal number2 = BigDecimal.valueOf(5.9);
+        MathOperation operation= new SubtractionOperation();
 
-        Exception exception = assertThrows(Exception.class, () -> calculatorServices.addNumber(number1, number2));
-        assertEquals("Error al realizar la suma de los números", exception.getMessage());
+        Exception exception = assertThrows(Exception.class, () -> calculatorServices.performOperation(number1, number2,operation));
+        assertEquals("Error al realizar la operación matemática", exception.getMessage());
         verifyNoInteractions(tracerAPI);
     }
 

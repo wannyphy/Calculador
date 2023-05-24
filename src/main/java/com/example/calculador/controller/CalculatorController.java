@@ -1,7 +1,10 @@
 package com.example.calculador.controller;
 
 import com.example.calculador.handlerexception.ExceptionHandlingAdvice;
+import com.example.calculador.service.AdditionOperation;
 import com.example.calculador.service.CalculatorServices;
+import com.example.calculador.service.MathOperation;
+import com.example.calculador.service.SubtractionOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +25,9 @@ public class CalculatorController {
 
     @GetMapping("/add")
     private ResponseEntity<String> addController(@RequestParam BigDecimal number1, @RequestParam BigDecimal number2){
+        MathOperation addition = new AdditionOperation();
         try {
-            BigDecimal result = calculatorServices.addNumber(number1, number2);
+            BigDecimal result = calculatorServices.performOperation(number1, number2, addition);
             return ResponseEntity.ok(String.valueOf(result));
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,8 +38,9 @@ public class CalculatorController {
 
     @GetMapping("/subtract")
     private ResponseEntity<String> subtractController(@RequestParam BigDecimal number1, @RequestParam BigDecimal number2){
+        MathOperation subtract = new SubtractionOperation();
         try {
-            BigDecimal result = calculatorServices.substractNumber(number1, number2);
+            BigDecimal result = calculatorServices.performOperation(number1, number2, subtract);
             return ResponseEntity.ok(String.valueOf(result));
         } catch (Exception e) {
             e.printStackTrace();
