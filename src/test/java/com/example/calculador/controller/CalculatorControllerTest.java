@@ -1,4 +1,4 @@
-package com.example.calculador;
+package com.example.calculador.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

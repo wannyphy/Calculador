@@ -1,4 +1,4 @@
-package com.example.calculador.handlerexception;
+package com.example.calculador.exception;
 
 import com.example.calculador.custom.ErrorResponseCustom;
 import org.apache.logging.log4j.LogManager;

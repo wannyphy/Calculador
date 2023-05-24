@@ -1,5 +1,6 @@
-package com.example.calculador;
+package com.example.calculador.config;
 
+import com.example.calculador.CalculadorApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

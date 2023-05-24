@@ -1,7 +1,7 @@
 package com.example.calculador.service;
 
 import com.example.calculador.config.AppConfig;
-import com.example.calculador.handlerexception.ExceptionHandlingAdvice;
+import com.example.calculador.exception.ExceptionHandlingAdvice;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
