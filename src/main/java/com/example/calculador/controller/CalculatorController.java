@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import io.swagger.v3.oas.annotations.Operation;
 import java.math.BigDecimal;
 
 @RestController
@@ -22,7 +22,7 @@ public class CalculatorController {
     private CalculatorServices calculatorServices;
     private static final Logger logger = LogManager.getLogger(ExceptionHandlingAdvice.class);
 
-
+    @Operation(summary = "Operación de Suma", description = "Realiza la suma de dos números")
     @GetMapping("/add")
     private ResponseEntity<String> addController(@RequestParam BigDecimal number1, @RequestParam BigDecimal number2){
         MathOperation addition = new AdditionOperation();
@@ -36,6 +36,7 @@ public class CalculatorController {
         }
     }
 
+    @Operation(summary = "Operación de Resta", description = "Realiza la resta de dos números")
     @GetMapping("/subtract")
     private ResponseEntity<String> subtractController(@RequestParam BigDecimal number1, @RequestParam BigDecimal number2){
         MathOperation subtract = new SubtractionOperation();
