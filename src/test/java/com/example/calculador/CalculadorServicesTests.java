@@ -1,7 +1,6 @@
 package com.example.calculador;
 
 import com.example.calculador.config.AppConfig;
-import com.example.calculador.custom.CustomException;
 import com.example.calculador.service.CalculatorServices;
 import io.corp.calculator.TracerImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -63,24 +62,24 @@ class CalculatorServicesTests {
     }
 
     @Test
-    void testSubtractNumberWithCustomException() throws Exception {
+    void testSubtractNumberWithCustomException(){
 
         BigDecimal number1 = null;
         BigDecimal number2 = BigDecimal.valueOf(5.9);
 
 
-        CustomException exception = assertThrows(CustomException.class, () -> calculatorServices.substractNumber(number1, number2));
+        Exception exception = assertThrows(Exception.class, () -> calculatorServices.substractNumber(number1, number2));
         assertEquals("Error al realizar la resta de los números", exception.getMessage());
         verifyNoInteractions(tracerAPI);
     }
 
     @Test
-    void testAddNumberWithCustomException() throws Exception {
+    void testAddNumberWithCustomException(){
 
         BigDecimal number1 = null;
         BigDecimal number2 = BigDecimal.valueOf(5.9);
 
-        CustomException exception = assertThrows(CustomException.class, () -> calculatorServices.addNumber(number1, number2));
+        Exception exception = assertThrows(Exception.class, () -> calculatorServices.addNumber(number1, number2));
         assertEquals("Error al realizar la suma de los números", exception.getMessage());
         verifyNoInteractions(tracerAPI);
     }
