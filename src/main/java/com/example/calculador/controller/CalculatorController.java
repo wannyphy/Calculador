@@ -1,10 +1,10 @@
 package com.example.calculador.controller;
 
 import com.example.calculador.exception.ExceptionHandlingAdvice;
-import com.example.calculador.service.AdditionOperation;
+import com.example.calculador.service.operation.AdditionOperation;
 import com.example.calculador.service.CalculatorServices;
-import com.example.calculador.service.MathOperation;
-import com.example.calculador.service.SubtractionOperation;
+import com.example.calculador.service.operation.MathOperation;
+import com.example.calculador.service.operation.SubtractionOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

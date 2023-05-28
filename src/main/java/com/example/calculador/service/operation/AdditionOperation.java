@@ -1,4 +1,6 @@
-package com.example.calculador.service;
+package com.example.calculador.service.operation;
+
+import com.example.calculador.service.operation.MathOperation;
 
 import java.math.BigDecimal;
 

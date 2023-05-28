@@ -1,6 +1,9 @@
 package com.example.calculador.service;
 
 import com.example.calculador.config.AppConfig;
+import com.example.calculador.service.operation.AdditionOperation;
+import com.example.calculador.service.operation.MathOperation;
+import com.example.calculador.service.operation.SubtractionOperation;
 import io.corp.calculator.TracerImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
