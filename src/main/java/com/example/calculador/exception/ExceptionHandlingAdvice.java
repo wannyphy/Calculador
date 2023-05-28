@@ -15,8 +15,8 @@ public class ExceptionHandlingAdvice {
         @ExceptionHandler(Exception.class)
         public ResponseEntity<ErrorResponseCustom> handleException(Exception e) {
             logger.error("Error en el servidor", e);
-            ErrorResponseCustom errorResponse = new ErrorResponseCustom(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error en el sevidor");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+            ErrorResponseCustom errorResponse = new ErrorResponseCustom(HttpStatus.BAD_REQUEST.value(), "Error en el sevidor");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
 }
 
